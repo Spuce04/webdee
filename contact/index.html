@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Webdee</title>
+  
+    <meta name="description" content="Contact Webdee to start your website project. Email, call, or use the form to get a free quote for professional web design and development." />
+  
+  <script src="/js/main.js"></script>
+  <link rel="stylesheet" href='/css/main.css'/>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
+</head>
+<body>
+  <header id="header" class="fixed top-0 w-full z-50 flex flex-col drop-shadow-md bg-white">
+    <nav class="p-2 z-10 relative flex flex-row items-center justify-center lg:justify-between lg:w-[1280px] lg:max-w-[90%] lg:mx-auto text-black"
+        id="nav-bar">
+        <a href="/" class="flex items-center space-x-2 -ml-[12px] lg:ml-0">
+            <img class="h-[48px] w-auto lg:h-auto" src="/images/logo.svg" alt="" />
+        </a>
+        <div class="group">
+            <button id="nav-button" class="lg:hidden mx-4 absolute right-0 top-1/2 -translate-y-1/2"
+                aria-label="navigation toggle button" onclick="ToggleNav();">
+                <div id="nav-icon" class="relative cursor-pointer w-6 h-4">
+                    <span id="icon-upper"
+                        class="absolute top-0 block w-full h-0.5 bg-black transition-transform duration-200"></span>
+                    <span id="icon-middle"
+                        class="absolute top-1/2 -translate-y-1/2 block w-full h-0.5 bg-black opacity-100 transition-opacity duration-200"></span>
+                    <span id="icon-lower"
+                        class="absolute bottom-0 block w-full h-0.5 bg-black transition-transform duration-200"></span>
+                </div>
+            </button>
+            <ul id="nav-list"
+                class="absolute lg:static top-full left-0 right-0 w-full lg:p-0 lg:h-auto flex-col lg:flex-row items-center gap-3 lg:gap-5 lg:flex hidden py-2 lg:py-0 bg-white">
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/" class="hover:underline">Home</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/projects" class="hover:underline">Projects</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/services" class="hover:underline">Services</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/about" class="hover:underline">About</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/contact" class="contact-btn">Start a Project</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="w-full lg:w-[1280px] lg:max-w-[90%] lg:mx-auto bg-white p-2">
+        <nav aria-label="Breadcrumb">
+            <ol class="flex flex-wrap gap-2 text-sm">
+                <li><a href='/' class="hover:underline">Home</a></li><li aria-hidden="true">/</li>
+                <li aria-current="page" class="font-bold">Contact</li>
+            </ol>
+        </nav>
+    </div><div id="nav-backdrop" onclick="ToggleNav()"
+        class="hidden lg:hidden absolute top-full h-screen left-0 right-0 bg-black opacity-50"></div>
+</header>
+
+<script>
+    function setHeaderOffset() {
+        const header = document.getElementById("header");
+        if (!header) return;
+
+        document.body.style.marginTop = header.offsetHeight + "px";
+    }
+
+    window.addEventListener("DOMContentLoaded", setHeaderOffset);
+    window.addEventListener("load", setHeaderOffset);
+    window.addEventListener("resize", setHeaderOffset);
+</script>
+
+  <main>
+    
+
+<div class="w-full h-[540px] flex flex-col items-center justify-center relative overflow-hidden bg-accent">
+
+  
+    <h1 class="z-10 max-w-[80%] text-center text-4xl">
+      Contact
+    </h1>
+  
+
+  
+    <p class="z-10 max-w-[80%] text-center">
+      Get in touch to start developing your website.
+    </p>
+  
+
+  
+</div>
+
+
+<div class="mx-auto w-[1280px] max-w-[90%] container-spacing flex flex-col lg:flex-row">
+    <div class="flex-1 flex flex-col gap-5">
+        <h2 class="text-center font-bold">
+            Let’s Get Your Website Running
+        </h2>
+        <p>
+            You can contact me directly via email and phone, or fill in the form. Describe the project you would like me
+            to develop and I will be in touch with a proposal.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-5 flex-wrap">
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-24 aspect-square flex flex-row items-center justify-center">
+                    <img src="/images/icon-mail.svg" alt="" class="w-20 h-auto">
+                </div>
+                <a href="mailto:enquiries@webdee.co.uk" class='px-2 underline'>enquiries@webdee.co.uk</a>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-24 aspect-square flex flex-row items-center justify-center">
+                    <img src="/images/icon-phone.svg" alt="" class="h-20 w-auto">
+                </div>
+                <a href="tel:+447727118954" class='px-2 underline'>+44 7885 658204</a>
+            </div>
+        </div>
+
+    </div>
+    <form action="https://formspree.io/f/xblkwkow" method="post" class="bg-white flex flex-col gap-3 flex-1">
+        <div class="flex flex-col">
+            <label for="name" class="w-fit">* Full Name:</label>
+            <input required type="text" id="name" name="name" class="form-input sm:max-w-[320px]"
+                placeholder="John Smith">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="email" class="w-fit">* Email Address:</label>
+            <input required type="email" id="email" name="email" class="form-input sm:max-w-[320px]"
+                placeholder="johnsmith@example.com">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="phone-number" class="w-fit">Phone Number:</label>
+            <input type="tel" id="phone-number" name="phone-number" class="form-input sm:max-w-[320px]"
+                placeholder="07700 900000">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="project-description" class="w-fit">* Project Description:</label>
+            <textarea required id="project-description" name="project-description" rows="6"
+                placeholder="Tell me a little about your business and goals for your website"
+                class="form-input w-full"></textarea>
+        </div>
+
+        <div class="flex flex-row items-center">
+            <input type="checkbox" id="consent" name="consent" required class="mr-2 rounded-none">
+            <label for="consent" class="text-gray-700">
+                I agree to the
+                <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
+                    class="text-blue-600 underline hover:text-blue-800">
+                    Privacy Policy
+                </a>
+            </label>
+        </div>
+        <div class="g-recaptcha" data-sitekey="6LdklKsrAAAAAC0XDIXPjR_bDnJeQY6WFuYpa7E9"></div>
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="submit" value="Submit" class="contact-btn">
+    </form>
+</div>
+
+
+
+  </main>
+
+  <footer class="bg-accent flex flex-col py-4">
+  <div class="flex flex-col md:flex-row justify-around px-3 py-4 space-y-4 md:space-y-0 md:space-x-8 lg:space-x-16">
+    <div class="flex flex-col">
+      <h3>
+        <u>Contact</u>
+      </h3>
+      <a href="mailto:enquiries@webdee.co.uk"
+        class="hover:underline break-words whitespace-normal w-fit">enquiries@webdee.co.uk</a>
+      <a href="tel:+447727118954" class="hover:underline w-fit">+44 7885 658204</a>
+    </div>
+    <div>
+      <h3>
+        <u>Links</u>
+      </h3>
+      <ul class="list-none">
+        <li>
+          <a href="/" class="hover:underline">Home</a>
+        </li>
+        <li>
+          <a href="/projects" class="hover:underline">Projects</a>
+        </li>
+        <li>
+          <a href="/about" class="hover:underline">About</a>
+        </li>
+        <li>
+          <a href="/contact" class="hover:underline">Contact</a>
+        </li>
+        <li>
+          <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center px-3">
+    <p>© 2025 Webdee All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

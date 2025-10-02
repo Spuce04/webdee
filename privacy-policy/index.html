@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy | Webdee</title>
+  
+  <script src="/js/main.js"></script>
+  <link rel="stylesheet" href='/css/main.css'/>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  <header id="header" class="fixed top-0 w-full z-50 flex flex-col drop-shadow-md bg-white">
+    <nav class="p-2 z-10 relative flex flex-row items-center justify-center lg:justify-between lg:w-[1280px] lg:max-w-[90%] lg:mx-auto text-black"
+        id="nav-bar">
+        <a href="/" class="flex items-center space-x-2 -ml-[12px] lg:ml-0">
+            <img class="h-[48px] w-auto lg:h-auto" src="/images/logo.svg" alt="" />
+        </a>
+        <div class="group">
+            <button id="nav-button" class="lg:hidden mx-4 absolute right-0 top-1/2 -translate-y-1/2"
+                aria-label="navigation toggle button" onclick="ToggleNav();">
+                <div id="nav-icon" class="relative cursor-pointer w-6 h-4">
+                    <span id="icon-upper"
+                        class="absolute top-0 block w-full h-0.5 bg-black transition-transform duration-200"></span>
+                    <span id="icon-middle"
+                        class="absolute top-1/2 -translate-y-1/2 block w-full h-0.5 bg-black opacity-100 transition-opacity duration-200"></span>
+                    <span id="icon-lower"
+                        class="absolute bottom-0 block w-full h-0.5 bg-black transition-transform duration-200"></span>
+                </div>
+            </button>
+            <ul id="nav-list"
+                class="absolute lg:static top-full left-0 right-0 w-full lg:p-0 lg:h-auto flex-col lg:flex-row items-center gap-3 lg:gap-5 lg:flex hidden py-2 lg:py-0 bg-white">
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/" class="hover:underline">Home</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/projects" class="hover:underline">Projects</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/services" class="hover:underline">Services</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/about" class="hover:underline">About</a>
+                </li>
+                <li class="flex flex-col items-center mb-1 lg:mb-0">
+                    <a href="/contact" class="contact-btn">Start a Project</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="w-full lg:w-[1280px] lg:max-w-[90%] lg:mx-auto bg-white p-2">
+        <nav aria-label="Breadcrumb">
+            <ol class="flex flex-wrap gap-2 text-sm">
+                <li><a href='/' class="hover:underline">Home</a></li><li aria-hidden="true">/</li>
+                <li aria-current="page" class="font-bold">Privacy Policy</li>
+            </ol>
+        </nav>
+    </div><div id="nav-backdrop" onclick="ToggleNav()"
+        class="hidden lg:hidden absolute top-full h-screen left-0 right-0 bg-black opacity-50"></div>
+</header>
+
+<script>
+    function setHeaderOffset() {
+        const header = document.getElementById("header");
+        if (!header) return;
+
+        document.body.style.marginTop = header.offsetHeight + "px";
+    }
+
+    window.addEventListener("DOMContentLoaded", setHeaderOffset);
+    window.addEventListener("load", setHeaderOffset);
+    window.addEventListener("resize", setHeaderOffset);
+</script>
+
+  <main>
+    
+
+<div class="w-full h-[540px] flex flex-col items-center justify-center relative overflow-hidden bg-accent">
+
+  
+    <h1 class="z-10 max-w-[80%] text-center text-4xl">
+      Privacy Policy
+    </h1>
+  
+
+  
+    <p class="z-10 max-w-[80%] text-center">
+      You privacy is valued.
+    </p>
+  
+
+  
+</div>
+
+
+<div class="mx-auto w-[1280px] max-w-[90%] container-spacing flex flex-col [&_ul]:w-full [&_ul]:list-disc [&_ul]:list-outside [&_ul]:pl-5 [&_ul]:space-y-1">
+    <h2 id="last-modified"><strong>Last Modified</strong></h2>
+<p>12/08/2025</p>
+<h2 id="who-we-are"><strong>Who We Are</strong></h2>
+<p>Webdee is based in the UK and respects your privacy. This policy explains what we collect, how we use it, and your rights under the UK GDPR and the Data Protection Act 2018.</p>
+<p><strong>Contact:</strong> <a href="mailto:enquiries@webdee.co.uk">enquiries@webdee.co.uk</a></p>
+<h2 id="what-we-collect"><strong>What We Collect</strong></h2>
+<p>When you submit our contact form, we collect:</p>
+<ul>
+<li>Name</li>
+<li>Email address</li>
+<li>Phone number</li>
+<li>Job description / brief for your website</li>
+</ul>
+<h2 id="how-we-use-your-data"><strong>How We Use Your Data</strong></h2>
+<p>We use your information to:</p>
+<ul>
+<li>Respond to your enquiry</li>
+<li>Provide quotes or proposals</li>
+<li>Keep a record of our communications</li>
+</ul>
+<p>We do <strong>not</strong> sell your data. We only share it with essential service providers that help us run our site (see below).</p>
+<h2 id="where-your-data-is-stored"><strong>Where Your Data Is Stored</strong></h2>
+<p>Form submissions are stored:</p>
+<ul>
+<li>In our email inbox</li>
+<li>In our <strong>Formspree</strong> account (used to process and deliver form submissions)</li>
+</ul>
+<p>Formspree acts as our data <strong>processor</strong> and handles your data on our behalf. We recommend reviewing Formspree’s privacy information for more details.</p>
+<h2 id="how-long-we-keep-your-data"><strong>How Long We Keep Your Data</strong></h2>
+<p>We retain enquiry records <strong>indefinitely</strong> unless you ask us to delete them.</p>
+<h2 id="legal-bases-for-processing"><strong>Legal Bases for Processing</strong></h2>
+<p>We process your data on the following legal bases:</p>
+<ul>
+<li><strong>Legitimate interests:</strong> to respond to your enquiry and manage prospective client relationships.</li>
+<li><strong>Consent:</strong> where you’ve explicitly asked us to contact you or similar.</li>
+</ul>
+<h2 id="your-rights-uk-gdpr"><strong>Your Rights (UK GDPR)</strong></h2>
+<p>You can:</p>
+<ul>
+<li>Request access to the personal data we hold about you</li>
+<li>Ask us to correct inaccurate data</li>
+<li>Ask us to delete your data</li>
+<li>Object to or restrict certain processing</li>
+</ul>
+<p>To exercise any of these rights, email <strong><a href="mailto:enquiries@webdee.co.uk">enquiries@webdee.co.uk</a></strong>.</p>
+<h2 id="childrens-data"><strong>Children’s Data</strong></h2>
+<p>Our website is not intended for children, and we don’t knowingly collect children’s data.</p>
+<h2 id="changes-to-this-policy"><strong>Changes to This Policy</strong></h2>
+<p>We may update this policy from time to time. We’ll post any changes on this page and update the “last modified” date above.</p>
+<h2 id="contact"><strong>Contact</strong></h2>
+<p>Questions about privacy?<br>
+Email: <strong><a href="mailto:enquiries@webdee.co.uk">enquiries@webdee.co.uk</a></strong></p>
+
+</div>
+
+
+  </main>
+
+  <footer class="bg-accent flex flex-col py-4">
+  <div class="flex flex-col md:flex-row justify-around px-3 py-4 space-y-4 md:space-y-0 md:space-x-8 lg:space-x-16">
+    <div class="flex flex-col">
+      <h3>
+        <u>Contact</u>
+      </h3>
+      <a href="mailto:enquiries@webdee.co.uk"
+        class="hover:underline break-words whitespace-normal w-fit">enquiries@webdee.co.uk</a>
+      <a href="tel:+447727118954" class="hover:underline w-fit">+44 7885 658204</a>
+    </div>
+    <div>
+      <h3>
+        <u>Links</u>
+      </h3>
+      <ul class="list-none">
+        <li>
+          <a href="/" class="hover:underline">Home</a>
+        </li>
+        <li>
+          <a href="/projects" class="hover:underline">Projects</a>
+        </li>
+        <li>
+          <a href="/about" class="hover:underline">About</a>
+        </li>
+        <li>
+          <a href="/contact" class="hover:underline">Contact</a>
+        </li>
+        <li>
+          <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center px-3">
+    <p>© 2025 Webdee All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
