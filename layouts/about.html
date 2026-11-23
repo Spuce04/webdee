@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+<div class="text-center my-5 text-white">
+    <h1 class="lead">About Us</h1>
+    <p class="display-4 fw-bold">Our Story and Values</p>
+</div>
+
+
+<div class="container col-10 col-md-6 col-lg-4 text-white d-flex flex-column align-items-center gap-4">
+
+    {{ with resources.Get "images/front-door.jpg" }}<img src="{{ .RelPermalink }}" alt="front door of loom" class="img-fluid w-100 rounded-3" loading="lazy"/>{{ end }}
+
+    <div>
+        <h2>Our Story</h2>
+        <p>
+            Co-founders of the well renowned Cheesy Toast Shack in St. Andrews, Sam and Kate, alongside with business partners Casey and Andy
+            decided to bring their passion for quality, fresh, and locally sourced food to Dundee. Thus, Loom Deli was born in October 2025 with the vision of creating a vibrant community hub
+            where people can come together to enjoy delicious food with great company.
+        </p>
+    </div>
+
+    <div>
+        <h2>Environment is Everything</h2>
+        <p>
+            A great meal is more than just the food on your plate, it's about the entire
+            experience. That's why we've created a warm and welcoming atmosphere where you can relax, unwind, and enjoy
+            delicious food made from the freshest ingredients.
+        </p>
+    </div>
+
+    {{ with resources.Get "images/showcase-6.jpg" }}<img src="{{ .RelPermalink }}" alt="Bread"
+        class="img-fluid w-100 rounded-3">{{ end }}
+
+    <div>
+        <h2>Locally Sourced</h2>
+        <p>
+            We are committed to supporting local suppliers. By sourcing our ingredients locally, we ensure
+            that our selection is not only fresh and flavorful but also contributes to the sustainability of Dundee's food community.
+        </p>
+    </div>
+
+    <div>
+        <h2>Pet Friendly</h2>
+        <p>
+            Pets are part of the family, which is why we welcome all furry friends at Loom Deli. Our pet-friendly
+            environment ensures that both you and your pets can enjoy a comfortable dining experience together.
+            If you have a dog, we're certain they'd enjoy a tasty puppaccino on us!
+        </p>
+    </div>
+    {{ with resources.Get "images/dog-friendly.jpg" }}<img src="{{ .RelPermalink }}" alt="Dog friendly"
+        class="img-fluid w-100 rounded-3">{{ end }}
+
+</div>
+
+{{ end }}

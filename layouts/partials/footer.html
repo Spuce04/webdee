@@ -1,0 +1,56 @@
+<footer class="bg-dark mt-5 py-5 text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 d-flex flex-column gap-3">
+                <h5 class="text-primary">Contact</h5>
+                <ul class="nav flex-column">
+                    <li class="mb-2 d-flex flex-row align-items-center gap-2 text-center">
+                        {{ (resources.Get "icons/instagram.svg").Content | safeHTML }}
+                        <a target="_blank" href="https://www.instagram.com/loomdeli/?hl=en"
+                            class="text-white">@loomdeli</a>
+                    </li>
+                    <li class="mb-2 d-flex flex-row align-items-center gap-2 text-center">
+                        {{ (resources.Get "icons/facebook.svg").Content | safeHTML }}
+                        <a target="_blank" href="https://www.facebook.com/people/Loom-Deli/61583794007733/"
+                            class="text-white">@Loom-Deli</a>
+                    </li>
+                    <li class="mb-2 d-flex flex-row align-items-center gap-2 text-center">
+                        {{ (resources.Get "icons/envelope.svg").Content | safeHTML }}
+                        <a href="mailto:feedthecrew@loomdeli.com" class="text-white">feedthecrew@loomdeli.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="text-primary">Explore</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="/shop" class="nav-link p-0 text-white">Shop</a></li>
+                    <li class="nav-item mb-2"><a href="/menu" class="nav-link p-0 text-white">Menu</a></li>
+                    <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-white">About</a></li>
+                    <li class="nav-item mb-2"><a href="/catering/" class="nav-link p-0 text-white">Catering</a></li>
+                    <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-white">Contact</a></li>
+                    <li class="nav-item mb-2"><button type="button" class="nav-link p-0 text-white"
+                            data-bs-toggle="modal" data-bs-target="#orderModal">Order</button></li>
+                    <li class="nav-item mb-2"><a href="/privacy-policy" class="nav-link p-0 text-white">Privacy
+                            Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="text-primary">Visit Us</h5>
+                <address class="text-white">Old Mill Complex, Brown Street, Dundee DD1 5EG</address>
+                <div class="ratio ratio-1x1 w-100">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2204.3505900917057!2d-2.9797440999999996!3d56.46172099999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48865d00046aeca9%3A0xaff04d988f33c9c9!2sLoom!5e0!3m2!1sen!2suk!4v1777203567041!5m2!1sen!2suk"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" style="border:0;" style="border:0;"
+                        allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p class="text-center text-white-50 mt-4 mb-0">&copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.
+        </p>
+    </div>
+</footer>

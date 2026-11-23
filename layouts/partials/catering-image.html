@@ -1,0 +1,18 @@
+{{- $image := resources.Get .src -}}
+{{- if not $image -}}
+    {{- errorf "Catering image not found: %s" .src -}}
+{{- else -}}
+    {{- $width := int (math.Min 960 $image.Width) -}}
+    {{- $fallback := $image.Resize (printf "%dx webp q80" $width) -}}
+    {{- $sources := slice -}}
+    {{- range slice 320 480 640 960 -}}
+        {{- if le . $width -}}
+            {{- $variant := $image.Resize (printf "%dx webp q80" .) -}}
+            {{- $sources = $sources | append (printf "%s %dw" $variant.RelPermalink .) -}}
+        {{- end -}}
+    {{- end -}}
+    <img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $sources ", " }}"
+        sizes="{{ .sizes | default "100vw" }}" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}"
+        alt="{{ .alt }}" class="{{ .class }}" decoding="async"
+        {{ if .priority }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}>
+{{- end -}}

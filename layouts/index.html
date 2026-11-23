@@ -1,0 +1,280 @@
+{{ define "main" }}
+
+
+<div class="container-fluid col-12 col-md-11">
+    <div class="row hero-row align-content-center gap-5 gap-md-0">
+        <div class="col-12 col-md-6 d-flex flex-row justify-content-center">
+            <div class="face-logo w-50">
+                {{ $logo := resources.Get "images/logo-face.svg" }}
+                {{ $logo.Content | safeHTML }}
+            </div>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-column hero-copy">
+                <h1>Bespoke web development based in Dundee</h1>
+                {{ partial "get-started.html"}}
+                {{ with .Params.projects_carousel }}
+                <section id="project-carousel" class="splide project-carousel mt-4" aria-label="Featured projects"
+                    tabindex="0">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            {{ range . }}
+                            {{ $background := "#555555" }}
+                            {{ with .background_color }}
+                            {{ if findRE `^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$` . }}
+                            {{ $background = . }}
+                            {{ end }}
+                            {{ end }}
+                            <li class="splide__slide">
+                                <div class="project-card scale-on-hover rounded-3"
+                                    style="background-color: {{ $background }}" ;>
+                                    {{ with .image }}
+                                    {{ with resources.Get . }}
+                                    {{ $image := . }}
+                                    {{ if ne .MediaType.Type "image/svg+xml" }}
+                                    {{ if gt .Width 800 }}
+                                    {{ $image = .Resize "800x webp q75" }}
+                                    {{ else }}
+                                    {{ $image = .Process "webp q75" }}
+                                    {{ end }}
+                                    {{ end }}
+                                    <img src="{{ $image.RelPermalink }}" alt="" {{ if ne .MediaType.Type "image/svg+xml"
+                                        }} width="{{ $image.Width }}" height="{{ $image.Height }}" {{ end }}
+                                        loading="eager" decoding="async">
+                                    {{ end }}
+                                    {{ end }}
+                                    <p class="project-card-title">{{ .title }}</p>
+                                </div>
+                            </li>
+                            {{ end }}
+                        </ul>
+
+                    </div>
+                </section>
+                <div class="nav-underline mt-2">
+                    <a href="/projects" class="nav-link d-inline-block p-0 text-secondary">
+                        View Projects
+                    </a>
+                </div> {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ with .Params.services }}
+<section id="services" class="container services-section my-5 py-4" aria-labelledby="services-heading">
+    <div class="row mb-4">
+        <div class="col-12 col-lg-8 text-md-start">
+            <h2 id="services-heading" class="mb-3">Services Tailored For You</h2>
+            <p class="text-start mb-0">From your first website to a fresh start, let's build something that works
+                for your business.</p>
+        </div>
+    </div>
+    <div class="row g-4">
+        {{ range . }}
+        <div class="col-12 col-md-6 col-xl-3">
+            <article class="service-card rounded-4 h-100 p-4">
+                {{ $alt := .alt | default "" }}
+                {{ with .image }}
+                {{ with resources.Get . }}
+                {{ if eq .MediaType.MainType "image" }}
+                <div class="service-icon rounded-3 mb-4">
+                    <img src="{{ .RelPermalink }}" alt="{{ $alt }}" width="40" height="40" loading="lazy"
+                        decoding="async">
+                </div>
+                {{ end }}
+                {{ end }}
+                {{ end }}
+                <h3 class="h4 mb-3">{{ .title }}</h3>
+                {{ with .description }}<p>{{ . }}</p>{{ end }}
+                {{ with .features }}
+                <ul class="service-features mb-0">
+                    {{ range . }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </article>
+        </div>
+        {{ end }}
+    </div>
+    <div class="nav-underline mt-2">
+        <a href="/services" class="nav-link d-inline-block p-0 text-secondary">
+            Our Services
+        </a>
+    </div>
+</section>
+{{ end }}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6 bg-white rounded-4 p-4">
+            <h2 class="mb-4">About Webdee</h2>
+            <p>At Webdee, we focus on personality and performance. We build websites that show off what makes your brand
+                unique, get your message across loud and clear, and load before your visitors have time to get bored and
+                wander off. Because what's the point of a great website if nobody sticks around to see it?</p>
+            <div class="nav-underline mt-2">
+                <a href="/about" class="nav-link d-inline-block p-0 text-secondary">
+                    About Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <h2 class="mb-4">Feeback From Clients</h2>
+    {{ $apiKey := "AIzaSyB742_C3HnSBNjzZzvEClKAlhX7xNRMiUc" }}
+    {{ $placeId := "ChIJqexqBABdhkgRyckzj5hN8K8" }}
+    {{ $url := printf
+    "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=reviews,rating&key=%s"
+    $placeId $apiKey }}
+
+    {{/* 1. Initialize $data as an empty map/dict */}}
+    {{ $data := dict }}
+
+    {{/* 2. Fetch data using the new try keyword */}}
+    {{ $resp := try (resources.GetRemote $url) }}
+
+    {{ with $resp.Err }}
+    {{ warnf "Google API Error: %s" . }}
+    {{ else }}
+    {{ with $resp.Value }}
+    {{/* 3. Assign the unmarshaled content to the $data variable */}}
+    {{ $data = .Content | transform.Unmarshal }}
+    {{ end }}
+    {{ end }}
+
+    <section id="review-slider" class="splide" aria-label="Google Reviews">
+        <div class="splide__track">
+            <ul class="splide__list">
+                {{ range $data.result.reviews }}
+                <li class="splide__slide p-3">
+                    <div class="card h-100 p-3 bg-dark text-white">
+                        <div class="mb-2">
+                            {{ (resources.Get "icons/google-colour.svg").Content | safeHTML }}
+                            <span class="text-warning">{{ range seq .rating }}★{{ end }}</span>
+                        </div>
+                        <strong class="text-primary">{{ .author_name }}</strong>
+                        <p class="small">"{{ .text }}"</p>
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        <div class="splide__arrows splide__arrows--ltr d-flex row justify-content-between gap-3 mt-3">
+            <button class="splide__arrow splide__arrow--prev position-relative" type="button"
+                aria-label="Previous slide" aria-controls="splide01-track">
+                {{ (resources.Get "icons/chevron-right.svg").Content | safeHTML }}
+            </button>
+            <button class="splide__arrow splide__arrow--next position-relative" type="button" aria-label="Next slide"
+                aria-controls="splide01-track">
+                {{ (resources.Get "icons/chevron-right.svg").Content | safeHTML }}
+            </button>
+        </div>
+    </section>
+</div>
+
+
+
+<div class="container my-5">
+    <h2 class="text-center text-md-start mb-4">Let's Get Started!</h2>
+</div>
+
+<div id="map" style="display:none;"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const days = document.querySelectorAll('#opening-hours [data-day]');
+        const weekday = new Intl.DateTimeFormat('en-GB', { weekday: 'long', timeZone: 'Europe/London' });
+
+        function highlightToday() {
+            const today = weekday.format(new Date());
+            days.forEach(function (day) {
+                const isToday = day.dataset.day === today;
+                if (isToday) {
+                    day.setAttribute('aria-current', 'date');
+                } else {
+                    day.removeAttribute('aria-current');
+                }
+                day.querySelector('.opening-hours-today').hidden = !isToday;
+            });
+        }
+
+        highlightToday();
+        window.setInterval(highlightToday, 60000);
+        document.addEventListener('visibilitychange', highlightToday);
+    });
+</script>
+
+{{ with .Params.projects_carousel }}
+<script
+    src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const root = document.getElementById('project-carousel');
+        if (!root || typeof Splide === 'undefined') return;
+
+        const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const hasMultipleSlides = root.querySelectorAll('.splide__slide').length > 1;
+        const carousel = new Splide(root, {
+            type: hasMultipleSlides ? 'loop' : 'slide',
+            perPage: hasMultipleSlides ? 2 : 1,
+            gap: '1rem',
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            live: false,
+            autoScroll: {
+                speed: motion.matches ? 0 : 0.5,
+                autoStart: !motion.matches && hasMultipleSlides,
+                pauseOnHover: true,
+                pauseOnFocus: true
+            },
+            breakpoints: {
+                1199: { perPage: 1, padding: { right: hasMultipleSlides ? '20%' : 0 } }
+            }
+        });
+
+        carousel.mount(window.splide?.Extensions || {});
+        root.addEventListener('mouseleave', function () {
+            const focusedElement = document.activeElement;
+            if (focusedElement instanceof HTMLElement && root.contains(focusedElement)) {
+                focusedElement.blur();
+            }
+        });
+        motion.addEventListener('change', function (event) {
+            carousel.options = { autoScroll: { speed: event.matches ? 0 : 0.5 } };
+            const scroll = carousel.Components.AutoScroll;
+            if (!scroll) return;
+            if (event.matches) scroll.pause();
+            else if (carousel.length > 1) scroll.play();
+        });
+    });
+</script>
+{{ end }}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Splide('#review-slider', {
+            type: 'loop',        // Infinite scrolling
+            drag: 'free',        // Smooth dragging
+            snap: true,          // Snaps to cards
+            perPage: 3,             // 3 cards on desktop
+            gap: '1rem',        // Spacing between cards
+            pagination: false,      // Hides dots at the bottom
+            breakpoints: {
+                992: { perPage: 2 },  // 2 cards on tablets
+                768: { perPage: 1 },  // 1 card on mobile
+            },
+        }).mount();
+    });
+</script>
+
+
+{{ with resources.Get "js/face.js" }}
+{{ $js := . | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}
+
+{{ end }}

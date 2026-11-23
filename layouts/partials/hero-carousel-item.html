@@ -1,0 +1,17 @@
+{{ $img := resources.Get .slide.image }}
+<div class="carousel-item {{ if eq .index 0 }}active{{ end }}" style="min-height: 400px;">
+    <div class="img-overlay">
+        {{ if $img }}
+        {{ $img := $img.Process "webp q75" }}
+
+        <img src="{{ $img.RelPermalink }}" class="d-block w-100 object-fit-cover vh-100"
+            width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ .slide.title }}" loading="lazy">
+        {{ end }}
+    </div>
+    <div class="carousel-caption d-block">
+        <h5>{{ .slide.title }}</h5>
+        <p>{{ .slide.description }}</p>
+        <a class="nav-item nav-link py-1 px-3 d-inline-block text-decoration-underline" href="/menu">Menu</a>
+        {{ partial "order-button.html" . }}
+    </div>
+</div>

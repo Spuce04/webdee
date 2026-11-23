@@ -1,0 +1,22 @@
+{{- $sitIn := .prices.sit_in_price -}}
+{{- $toGo := .prices.to_go_price -}}
+{{- $hasSitIn := and (ne $sitIn nil) (ne $sitIn "") -}}
+{{- $hasToGo := and (ne $toGo nil) (ne $toGo "") -}}
+{{- $priceClass := "text-nowrap" -}}
+{{- if .category -}}
+    {{- $priceClass = "badge bg-primary rounded-pill text-nowrap" -}}
+{{- end -}}
+{{- if or $hasSitIn $hasToGo .fallback -}}
+<div class="d-flex flex-wrap justify-content-end gap-2 ms-auto">
+    {{- if or $hasSitIn $hasToGo -}}
+        {{- if $hasSitIn }}
+        <span class="{{ $priceClass }}">Sit in £{{ lang.FormatNumber 2 $sitIn }}{{ if .category }} Each{{ end }}</span>
+        {{- end -}}
+        {{- if $hasToGo }}
+        <span class="{{ $priceClass }}">To go £{{ lang.FormatNumber 2 $toGo }}{{ if .category }} Each{{ end }}</span>
+        {{- end -}}
+    {{- else }}
+        <span class="{{ $priceClass }}">£{{ lang.FormatNumber 2 .fallback }}{{ if .category }} Each{{ end }}</span>
+    {{- end }}
+</div>
+{{- end -}}

@@ -1,0 +1,22 @@
+{{ $imgResource := resources.Get .image }}
+
+<div class="card rounded-4 bg-dark p-0" style="height: 600px;">
+    {{ if $imgResource }}
+    {{ $processed := $imgResource.Process "resize 600x webp" }}
+    <img src="{{ $processed.RelPermalink }}" class="w-100 object-fit-cover rounded-top-4" style="height: 400px;" loading="lazy" alt="social media post">
+    {{ else }}
+    <div style="height:400px; background:red; color:white;">MISSING: {{ .image }}</div>
+    {{ end }}
+
+    <div class="card-body bg-dark rounded-bottom-4 border-0 flex-column d-flex justify-content-between">
+        <div>
+            <p class="text-white-50 small mb-1 fw-bold">
+                {{ time.Format "January 2, 2006" .date }}
+            </p>
+            <p class="card-text text-white"
+                style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">{{
+                .text | markdownify }}</p>
+        </div>
+        <a href="{{ .link }}" class="text-primary">View On Instagram</a>
+    </div>
+</div>

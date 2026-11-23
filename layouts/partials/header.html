@@ -1,0 +1,33 @@
+<header class="{{ if .IsHome }}fixed-top{{ else }}sticky-top{{ end }} bg-main">
+    <nav class="navbar navbar-expand-lg navbar-light" id="headerNavbar">
+        <div class="container">
+            <a class="navbar-brand scale-on-hover" href="/">
+                {{ $logo := resources.Get "images/logo.svg" }}
+                <img src="{{ $logo.RelPermalink }}" alt="{{ .Site.Title }} logo" class="">
+            </a>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-underline ms-auto mb-2 mb-lg-0 align-items-md-center">
+                    <li class="nav-item">
+                        <a class="nav-link p-0 text-secondary fw-bold" style="width: fit-content;" href="/projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-0 text-secondary fw-bold" style="width: fit-content;" href="/services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-0 text-secondary fw-bold" style="width: fit-content;" href="/about">About</a>
+                    </li>
+                    {{partial "get-started.html"}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

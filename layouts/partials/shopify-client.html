@@ -1,0 +1,50 @@
+<script src="https://sdks.shopifycdn.com/buy-button/latest/buybutton.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 1. Initialize the client using your Hugo config variables
+    var client = ShopifyBuy.buildClient({
+      domain: '{{ .Site.Params.shopify.domain }}',
+      storefrontAccessToken: '{{ .Site.Params.shopify.storefrontToken }}',
+    });
+
+    // 2. Initialize the global UI component
+    window.ShopifyUI = ShopifyBuy.UI.init(client);
+    
+    // 3. Define your global UI preferences (optional, but highly recommended)
+    window.shopifyComponentConfig = {
+      product: {
+        iframe: false, // Forces it to inject HTML into your DOM instead of an isolated iframe
+        contents: {
+          img: false,
+          title: false,
+          price: false,
+          options: false // We hide the default UI, we just want the button logic
+        },
+        text: {
+          button: 'Add to cart',
+        }
+      },
+      cart: {
+        styles: {
+          button: {
+            'background-color': '#000000',
+            ':hover': {
+              'background-color': '#333333'
+            }
+          }
+        }
+      },
+      toggle: {
+        styles: {
+          toggle: {
+            'background-color': '#000000',
+            ':hover': {
+              'background-color': '#333333'
+            }
+          }
+        }
+      }
+    };
+  });
+</script>

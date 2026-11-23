@@ -1,0 +1,71 @@
+<section class="bg-dark rounded-4 p-4" aria-labelledby="catering-enquiries">
+    <form id="cateringForm" action="/api/send" method="POST">
+        <h2 id="catering-enquiries" class="text-white mb-3">Catering Enquiry</h2>
+        <p>Tell us what you're planning and we'll get back to discuss your catering requirements.</p>
+        <input type="hidden" name="form_type" value="catering">
+        <div class="d-none" aria-hidden="true">
+            <label for="cateringWebsite">Leave this field blank</label>
+            <input type="text" id="cateringWebsite" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="mb-3">
+            <label for="cateringEmail" class="form-label visually-hidden">Email Address</label>
+            <input type="email" class="form-control" id="cateringEmail" name="email"
+                placeholder="Email Address" autocomplete="email" maxlength="254" required>
+        </div>
+        <div class="mb-3">
+            <label for="cateringPhone" class="form-label visually-hidden">Phone Number (optional)</label>
+            <input type="tel" class="form-control" id="cateringPhone" name="phone"
+                placeholder="Phone Number (optional)" autocomplete="tel" maxlength="40">
+        </div>
+        <div class="mb-3">
+            <label for="cateringPostcode" class="form-label visually-hidden">Postcode</label>
+            <input type="text" class="form-control" id="cateringPostcode" name="postcode"
+                placeholder="Postcode" autocomplete="postal-code" autocapitalize="characters"
+                pattern="([A-Za-z]{1,2}[0-9][A-Za-z0-9]?\s*[0-9][A-Za-z]{2}|[Gg][Ii][Rr]\s*0[Aa][Aa])"
+                title="Enter a UK postcode, for example DD1 5EG" maxlength="12" required>
+        </div>
+        <div class="mb-3">
+            <label for="cateringDate" class="form-label">Event date</label>
+            <input type="date" class="form-control" id="cateringDate" name="event_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="cateringSandwiches" class="form-label">Number of sandwiches</label>
+            <input type="number" class="form-control" id="cateringSandwiches" name="sandwich_amount"
+                min="0" step="1" value="0" inputmode="numeric" aria-describedby="cateringQuantityHint" required>
+        </div>
+        <div class="mb-3">
+            <label for="cateringSweets" class="form-label">Number of sweet treats</label>
+            <input type="number" class="form-control" id="cateringSweets" name="sweet_treat_amount"
+                min="0" step="1" value="0" inputmode="numeric" aria-describedby="cateringQuantityHint" required>
+        </div>
+        <div class="mb-3">
+            <label for="cateringMessage" class="form-label visually-hidden">Your Message</label>
+            <textarea class="form-control" id="cateringMessage" name="message" rows="5"
+                placeholder="Your Message" maxlength="5000" required></textarea>
+        </div>
+        <div class="mb-3 text-white">
+            <small>We use these details to respond to your enquiry. Read our
+                <a href="/privacy-policy/" class="text-primary">Privacy Policy</a>.</small>
+        </div>
+        <div id="cateringFormError" class="alert alert-danger d-none" role="alert" tabindex="-1"></div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="text-black btn btn-lg bg-primary fw-bold">Send Enquiry</button>
+        </div>
+    </form>
+</section>
+
+<div class="modal fade" id="cateringSuccessModal" tabindex="-1" aria-labelledby="cateringSuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white bg-dark">
+            <div class="modal-header border-black">
+                <h5 class="modal-title fw-bold" id="cateringSuccessModalLabel">Enquiry Sent!</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Thank you for your catering enquiry. We'll get back to you to discuss the details.</div>
+            <div class="modal-footer border-black">
+                <button type="button" class="btn bg-primary text-black" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

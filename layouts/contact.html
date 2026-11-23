@@ -1,0 +1,143 @@
+{{ define "main" }}
+
+<div class="text-center my-5 text-white">
+    <h1 class="lead">Contact</h1>
+    <p class="display-4 fw-bold">Get in Touch With Us</p>
+</div>
+
+
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-11 bg-dark rounded-4 p-4">
+            
+            <form id="contactForm" action="#" method="POST">
+                
+                <h2 class="text-white mb-3">Fill in the form below</h2>
+                
+                <div class="mb-3">
+                    <label for="name" class="form-label visually-hidden">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" maxlength="120" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label visually-hidden">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"
+                    maxlength="254" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="phone" class="form-label visually-hidden">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" maxlength="40">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="interest" class="form-label visually-hidden">I'm Interested In</label>
+                    <select class="form-select" id="interest" name="interest" placeholder="I'm Interested In" required>
+                        <option class="text-muted" value="" selected>I'm Interested In</option>
+                        <option class="text-black" value="general">General Inquiry</option>
+                        <option class="text-black" value="catering">Catering Services</option>
+                        <option class="text-black" value="feedback">Feedback</option>
+                        <option class="text-black" value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="message" class="form-label visually-hidden">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" maxlength="5000"
+                    required></textarea>
+                </div>
+                
+                <div class="mb-3 text-white">
+                    <small>By sending this form, you agree to our <a href="/privacy-policy" class="text-primary">Privacy
+                        Policy</a>. We only use your information to respond to your inquiry and will not share it
+                        with third parties.</small>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="text-black btn btn-lg bg-primary fw-bold">Send Message</button>
+                    </div>
+                    
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="container col-md-4 mb-4 d-flex flex-row gap-3 text-white">
+        <hr class="flex-grow-1"><span class="px-2">OR</span><hr class="flex-grow-1">
+    </div>
+    <div class="container col-md-4 mb-4 d-flex flex-column gap-3">
+        <h5 class="text-white">Reach out to us via email and social media</h5>
+        <ul class="nav flex-column">
+            <li class="mb-2 d-flex flex-row align-items-center gap-2 text-center text-white">
+                {{ (resources.Get "icons/instagram.svg").Content | safeHTML }}
+                <a target="_blank" href="https://www.instagram.com/loomdeli/?hl=en" class="text-white">@loomdeli</a>
+            </li>
+            <li class="mb-2 d-flex flex-row align-items-center gap-2 text-center text-white">
+                {{ (resources.Get "icons/facebook.svg").Content | safeHTML }}
+                <a target="_blank" href="https://www.facebook.com/people/Loom-Deli/61583794007733/"
+                    class="text-white">@Loom-Deli</a>
+            </li>
+            <li class="mb-2 d-flex flex-row align-items-center gap-2 text-center text-white">
+                {{ (resources.Get "icons/envelope.svg").Content | safeHTML }}
+                <a href="mailto:feedthecrew@loomdeli.com" class="text-white">feedthecrew@loomdeli.com</a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white bg-dark">
+                <div class="modal-header border-black">
+                    <h5 class="modal-title fw-bold" id="successModalLabel">Message Sent!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Thank you for contacting us. We have received your message and will get back to you shortly.
+            </div>
+            <div class="modal-footer border-black">
+                <button type="button" class="btn bg-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Keep catering enquiries in the established contact flow.
+    const requestedInterest = new URLSearchParams(window.location.search).get('interest');
+    const interestSelect = document.getElementById('interest');
+    if (requestedInterest && Array.from(interestSelect.options).some(option => option.value === requestedInterest)) {
+        interestSelect.value = requestedInterest;
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const modalElement = document.getElementById('successModal');
+                const successModal = bootstrap.Modal.getOrCreateInstance(modalElement);
+
+                successModal.show();
+                form.reset();
+            } else {
+                alert('There was an error sending your message. Please try again later.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was an error sending your message. Please try again later.');
+        }
+    });
+</script>
+
+{{ end }}
