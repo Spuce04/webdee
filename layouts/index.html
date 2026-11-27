@@ -61,50 +61,52 @@
     </div>
 </div>
 
-{{ with .Params.services }}
-<section id="services" class="container services-section my-5 py-4" aria-labelledby="services-heading">
-    <div class="row mb-4">
-        <div class="col-12 col-lg-8 text-md-start">
+<div class="container-fluid col-12 bg-white">
+    <div class="row hero-row align-content-center gap-5 gap-md-0 p-0 p-md-5">
+        <div class="col-12 col-md-6">
             <h2 id="services-heading" class="mb-3">Services Tailored For You</h2>
             <p class="text-start mb-0">From your first website to a fresh start, let's build something that works
                 for your business.</p>
+            <div class="nav-underline mt-2">
+                <a href="/services" class="nav-link d-inline-block p-0 text-secondary">
+                    Webdee Services
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="row g-4">
-        {{ range . }}
-        <div class="col-12 col-md-6 col-xl-3">
-            <article class="service-card rounded-4 h-100 p-4">
-                {{ $alt := .alt | default "" }}
-                {{ with .image }}
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-column col-6">
+                <!-- MorphSVG services illustration -->
+                {{ $morphIcons := slice }}
+                {{ range .Params.morph_icons }}
+                {{ $image := . }}
+                {{ $label := "" }}
+                {{ if reflect.IsMap . }}
+                {{ $image = .image }}
+                {{ $label = .label | default "" }}
+                {{ end }}
+                {{ with $image }}
                 {{ with resources.Get . }}
-                {{ if eq .MediaType.MainType "image" }}
-                <div class="service-icon rounded-3 mb-4">
-                    <img src="{{ .RelPermalink }}" alt="{{ $alt }}" width="40" height="40" loading="lazy"
-                        decoding="async">
+                {{ if eq .MediaType.Type "image/svg+xml" }}
+                {{ $morphIcons = $morphIcons | append (dict "resource" . "label" $label) }}
+                {{ end }}
+                {{ end }}
+                {{ end }}
+                {{ end }}
+                {{ with $morphIcons }}
+                <div class="services-morph mx-auto" data-services-morph>
+                    <div data-morph-display aria-hidden="true">
+                        {{ (index . 0).resource.Content | safeHTML }}
+                    </div>
+                    <p class="services-morph-label mb-0" data-morph-label>{{ (index . 0).label }}</p>
+                    {{ range . }}
+                    <template data-morph-shape data-morph-label="{{ .label }}">{{ .resource.Content | safeHTML }}</template>
+                    {{ end }}
                 </div>
                 {{ end }}
-                {{ end }}
-                {{ end }}
-                <h3 class="h4 mb-3">{{ .title }}</h3>
-                {{ with .description }}<p>{{ . }}</p>{{ end }}
-                {{ with .features }}
-                <ul class="service-features mb-0">
-                    {{ range . }}
-                    <li>{{ . }}</li>
-                    {{ end }}
-                </ul>
-                {{ end }}
-            </article>
+            </div>
         </div>
-        {{ end }}
     </div>
-    <div class="nav-underline mt-2">
-        <a href="/services" class="nav-link d-inline-block p-0 text-secondary">
-            Our Services
-        </a>
-    </div>
-</section>
-{{ end }}
+</div>
 
 <div class="container my-5">
     <div class="row">

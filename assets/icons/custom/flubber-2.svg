@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="flubber-2">
+<path id="right-block" d="M24.7273 15.0588L32 19.2941V27.7647L24.7273 32L17.4545 27.7647V19.2941L24.7273 15.0588Z" fill="#02C3E6"/>
+<path id="left-block" d="M7.27273 15.0588L14.5455 19.2941V27.7647L7.27273 32L0 27.7647V19.2941L7.27273 15.0588Z" fill="#02C3E6"/>
+<path id="top-block" d="M16 0L23.2727 4.23529V12.7059L16 16.9412L8.72729 12.7059V4.23529L16 0Z" fill="#02C3E6"/>
+</g>
+</svg>

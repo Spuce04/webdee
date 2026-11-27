@@ -24,6 +24,18 @@ projects_carousel:
     background_color: "#f5c482"
 
 
+# MorphSVG icons: image paths relative to assets/, with editable labels, in animation order.
+# Use path-based SVGs with the same viewBox and one fill colour per icon.
+morph_icons:
+  - image: "icons/custom/flubber-1.svg"
+    label: "Design"
+  - image: "icons/custom/flubber-2.svg"
+    label: "Modern Builds"
+  - image: "icons/custom/flubber-3.svg"
+    label: "Growth"
+  - image: "icons/custom/flubber-4.svg"
+    label: "Maintenance"
+
 # Service cards render in this order. Image paths are relative to assets/.
 # Duplicate an entry to add a card; description, image, alt and features are optional.
 services:

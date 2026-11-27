@@ -55,7 +55,10 @@
 
     {{ $bootstrapJS := resources.Get "js/bootstrap.bundle.js" }}
     {{ $mainJS := resources.Get "js/main.js" }}
-    {{ $js := slice $bootstrapJS $mainJS | resources.Concat "js/bundle.js" | minify | fingerprint }}
+    {{ $gsapJS := resources.Get "js/gsap.min.js" }}
+    {{ $morphSVGJS := resources.Get "js/MorphSVGPlugin.min.js" }}
+    {{ $servicesMorphJS := resources.Get "js/services-morph.js" }}
+    {{ $js := slice $bootstrapJS $gsapJS $morphSVGJS $mainJS $servicesMorphJS | resources.Concat "js/bundle.js" | minify | fingerprint }}
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
 </body>

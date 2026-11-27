@@ -366,6 +366,33 @@ body {
     padding-bottom: 3rem;
 }
 
+.services-morph {
+    width: min(100%, 20rem);
+}
+
+.services-morph [data-morph-display] {
+    aspect-ratio: 1;
+}
+
+.services-morph svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.services-morph svg {
+    overflow: visible;
+}
+
+.services-morph-label {
+    margin-top: 1.5rem;
+    min-height: 2.8em;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
 .hero-copy {
     width: 100%;
     min-width: 0;
