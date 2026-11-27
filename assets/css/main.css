@@ -416,7 +416,6 @@ body {
 .service-card {
     background-color: #f4faff;
     border: 1px solid rgba(23, 45, 61, .12);
-    border-top: .3rem solid var(--bs-secondary);
 }
 
 .service-icon {
